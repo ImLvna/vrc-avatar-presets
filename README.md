@@ -1,34 +1,18 @@
 # vrc-avatar-presets
 
-An Electron application with Svelte and TypeScript
+An electron OSC app that allows you to make presets of avatar parameters!
 
-## Recommended IDE Setup
+## Running
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
+Currently, I do not have binary distributions setup, so you will have to run from source
 
-## Project Setup
+-# Note: This project uses [pnpm](https://pnpm.io). Please use it for this project, to ensure the same dependencies are installed
 
-### Install
+- Clone the project: `git clone https://github.com/ImLvna/vrc-avatar-presets.git`
+- Move into the project: `cd vrc-avatar-presets`
+- Install dependencies: `pnpm install --frozen-lockfile`
+- Run the app: `pnpm dev`
 
-```bash
-$ pnpm install
-```
+## Todo
 
-### Development
-
-```bash
-$ pnpm dev
-```
-
-### Build
-
-```bash
-# For windows
-$ pnpm build:win
-
-# For macOS
-$ pnpm build:mac
-
-# For Linux
-$ pnpm build:linux
-```
+- [ ] Make the ui pretty
