@@ -2,6 +2,7 @@ import { Notification } from 'electron'
 import { IGNORED_PARAMS } from '../constants'
 import server from '../osc/server'
 import { OscMessageType } from '../osc/types'
+import { config } from './config'
 import * as data from './data'
 
 export default function initStorageHandler(): void {
@@ -31,7 +32,7 @@ export default function initStorageHandler(): void {
   server.on(OscMessageType.AvatarParameters, ({ parameter, value }) => {
     const avatarId = data.getAvatarId()
     if (!avatarId) return
-    for (const ignoredParam of IGNORED_PARAMS) {
+    for (const ignoredParam of [...IGNORED_PARAMS, config.ignoreParams]) {
       if (ignoredParam instanceof RegExp) {
         if (ignoredParam.test(parameter)) return
       } else if (ignoredParam === parameter) {
