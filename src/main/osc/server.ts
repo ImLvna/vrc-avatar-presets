@@ -5,8 +5,6 @@ import { OscMessageArgs, OscMessageType } from './types'
 
 let server: Server
 
-export default server!
-
 export function startOSCServer(): void {
   server = new Server(config.listenPort, '0.0.0.0', () => {
     console.log(`Listening for OSC messages on ${config.listenPort}`)
@@ -75,3 +73,5 @@ export function startOSCServer(): void {
     server.emit(address as OscMessageType, parsedParams)
   })
 }
+
+export { server }

@@ -1,6 +1,6 @@
 import { Notification } from 'electron'
 import { IGNORED_PARAMS } from '../constants'
-import server from '../osc/server'
+import { server } from '../osc/server'
 import { OscMessageType } from '../osc/types'
 import { config } from './config'
 import * as data from './data'
