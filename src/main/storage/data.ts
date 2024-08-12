@@ -6,6 +6,7 @@ import iStorage from '../../shared/types/storage'
 import { storageDir } from '../constants'
 import client from '../osc/client'
 import { OscMessageType } from '../osc/types'
+import { config } from './config'
 
 let storage: iStorage = {
   curAvatarId: undefined,
@@ -26,9 +27,11 @@ export function saveData(): void {
     mkdirSync(storageDir)
   }
   const editData = JSON.parse(JSON.stringify(storage))
-  for (const avatar of Object.values(editData.avatars)) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (avatar as any).parameters
+  if (!config.saveParameters) {
+    for (const avatar of Object.values(editData.avatars)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (avatar as any).parameters
+    }
   }
   const data = JSON.stringify(editData, null, 2)
   writeFileSync(storageDir + '/data.json', data)
@@ -113,7 +116,7 @@ export function createPreset(avatarId: string, name: string): void {
   const presetId = Math.random().toString(36).substring(2)
   storage.avatars[avatarId].presets[presetId] = {
     name,
-    parameters: JSON.parse(JSON.stringify(storage.avatars[avatarId].parameters))
+    parameters: Object.create(storage.avatars[avatarId].parameters || {})
   }
   saveData()
 
@@ -153,7 +156,7 @@ export function updatePreset(avatarId: string, presetId: string): void {
     throw new Error(`Preset ${presetId} not found`)
   }
   storage.avatars[avatarId].presets[presetId].parameters = Object.create(
-    storage.avatars[avatarId].parameters
+    storage.avatars[avatarId].parameters || {}
   )
   saveData()
 

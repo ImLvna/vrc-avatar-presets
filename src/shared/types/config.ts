@@ -3,6 +3,8 @@ type iBaseConfig = {
   oscQueryListenPort?: number
   listenPort: number
   targetHost: string
+
+  saveParameters?: boolean
 }
 
 export type iStoredConfig = iBaseConfig & {
